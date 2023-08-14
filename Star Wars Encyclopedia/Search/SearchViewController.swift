@@ -7,8 +7,19 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class SearchViewController: UIViewController {
 
+    private let viewModel: ViewModelProtocol
+    
+    init(viewModel: ViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
+    
     private lazy var layout: UICollectionViewLayout = {
        let layout = UICollectionViewLayout()
         
@@ -25,18 +36,19 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        self.view.backgroundColor = .white
+        
     }
 
 
 }
-extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+extension SearchViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        <#code#>
+        0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        <#code#>
+        return UICollectionViewCell()
     }
     
     
