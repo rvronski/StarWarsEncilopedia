@@ -101,22 +101,17 @@
 			children = (
 				45668FEA2A8A9C320034C7C4 /* AppDelegate.swift */,
 				45668FEC2A8A9C320034C7C4 /* SceneDelegate.swift */,
+				4566901E2A8AADAA0034C7C4 /* App */,
 				4566901A2A8AA7F90034C7C4 /* Search */,
 				4566901B2A8AA8150034C7C4 /* Favorites */,
-				456690012A8A9EA70034C7C4 /* AppCoordinator.swift */,
-				456690112A8AA6D40034C7C4 /* TabBarController.swift */,
-				456690032A8A9ED10034C7C4 /* AppFactory.swift */,
-				456690092A8AA3CE0034C7C4 /* MainViewModel.swift */,
-				456690052A8AA3340034C7C4 /* Module.swift */,
-				456690072A8AA3930034C7C4 /* Coordinatable.swift */,
-				4566900B2A8AA43E0034C7C4 /* NetworkManager.swift */,
-				4566900D2A8AA4640034C7C4 /* CoreDataManager.swift */,
+				4566901F2A8AADEF0034C7C4 /* ViewModel */,
+				456690202A8AAE1A0034C7C4 /* Network */,
+				456690212A8AAE2C0034C7C4 /* CoreData */,
 				456690132A8AA7010034C7C4 /* Extensions */,
 				45668FF02A8A9C320034C7C4 /* Main.storyboard */,
 				45668FF62A8A9C3D0034C7C4 /* Assets.xcassets */,
 				45668FF82A8A9C3D0034C7C4 /* LaunchScreen.storyboard */,
 				45668FFB2A8A9C3D0034C7C4 /* Info.plist */,
-				45668FF32A8A9C320034C7C4 /* Star_Wars_Encyclopedia.xcdatamodeld */,
 			);
 			path = "Star Wars Encyclopedia";
 			sourceTree = "<group>";
@@ -148,6 +143,7 @@
 			path = Favorites;
 			sourceTree = "<group>";
 		};
+<<<<<<< HEAD
 		982BF2A0C0525B3905C6C5B8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -156,6 +152,43 @@
 			);
 			name = Pods;
 			path = Pods;
+=======
+		4566901E2A8AADAA0034C7C4 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				456690012A8A9EA70034C7C4 /* AppCoordinator.swift */,
+				456690032A8A9ED10034C7C4 /* AppFactory.swift */,
+				456690112A8AA6D40034C7C4 /* TabBarController.swift */,
+				456690052A8AA3340034C7C4 /* Module.swift */,
+				456690072A8AA3930034C7C4 /* Coordinatable.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		4566901F2A8AADEF0034C7C4 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				456690092A8AA3CE0034C7C4 /* MainViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		456690202A8AAE1A0034C7C4 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				4566900B2A8AA43E0034C7C4 /* NetworkManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		456690212A8AAE2C0034C7C4 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				4566900D2A8AA4640034C7C4 /* CoreDataManager.swift */,
+				45668FF32A8A9C320034C7C4 /* Star_Wars_Encyclopedia.xcdatamodeld */,
+			);
+			path = CoreData;
+>>>>>>> 2cdf817ea18ad230337898a3ab09857e363ee888
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
