@@ -17,4 +17,12 @@ class MainViewModel: ViewModelProtocol {
         self.networkManager = networkManager
     }
     weak var coordinator: Coordinatable!
+    
+    func getHeroes(searchText: String, completion: @escaping ((_ heroes: [Hero]) -> Void)) {
+        networkManager.getHeroes(searchText: searchText) { heroes in
+            guard let heroes else {return}
+            completion(heroes)
+        }
+    }
+    
 }

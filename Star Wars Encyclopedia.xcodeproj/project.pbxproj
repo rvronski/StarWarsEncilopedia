@@ -28,6 +28,9 @@
 		456690192A8AA7B00034C7C4 /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456690182A8AA7AF0034C7C4 /* SearchCoordinator.swift */; };
 		4566901D2A8AA8360034C7C4 /* FavoritesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4566901C2A8AA8360034C7C4 /* FavoritesCoordinator.swift */; };
 		6EA3C99254A83F5DA0574722 /* Pods_Star_Wars_Encyclopedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA197E3192021E50C976D535 /* Pods_Star_Wars_Encyclopedia.framework */; };
+		84E3F50D2A8D466300D91A7E /* NetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E3F50C2A8D466300D91A7E /* NetworkModel.swift */; };
+		84E3F50F2A8D489900D91A7E /* SearchListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E3F50E2A8D489900D91A7E /* SearchListCollectionViewCell.swift */; };
+		84E3F5112A8D490000D91A7E /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E3F5102A8D490000D91A7E /* CustomLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +57,9 @@
 		456690182A8AA7AF0034C7C4 /* SearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
 		4566901C2A8AA8360034C7C4 /* FavoritesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCoordinator.swift; sourceTree = "<group>"; };
 		6A889D8038BD10F3388849F9 /* Pods-Star Wars Encyclopedia.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Star Wars Encyclopedia.debug.xcconfig"; path = "Target Support Files/Pods-Star Wars Encyclopedia/Pods-Star Wars Encyclopedia.debug.xcconfig"; sourceTree = "<group>"; };
+		84E3F50C2A8D466300D91A7E /* NetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkModel.swift; sourceTree = "<group>"; };
+		84E3F50E2A8D489900D91A7E /* SearchListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListCollectionViewCell.swift; sourceTree = "<group>"; };
+		84E3F5102A8D490000D91A7E /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		DD0630ACCC7A9937BDA3D7D0 /* Pods-Star Wars Encyclopedia.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Star Wars Encyclopedia.release.xcconfig"; path = "Target Support Files/Pods-Star Wars Encyclopedia/Pods-Star Wars Encyclopedia.release.xcconfig"; sourceTree = "<group>"; };
 		FA197E3192021E50C976D535 /* Pods_Star_Wars_Encyclopedia.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Star_Wars_Encyclopedia.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -101,15 +107,12 @@
 			children = (
 				45668FEA2A8A9C320034C7C4 /* AppDelegate.swift */,
 				45668FEC2A8A9C320034C7C4 /* SceneDelegate.swift */,
+				84E3F50B2A8BE27C00D91A7E /* AppFiles */,
 				4566901A2A8AA7F90034C7C4 /* Search */,
 				4566901B2A8AA8150034C7C4 /* Favorites */,
-				456690012A8A9EA70034C7C4 /* AppCoordinator.swift */,
-				456690112A8AA6D40034C7C4 /* TabBarController.swift */,
-				456690032A8A9ED10034C7C4 /* AppFactory.swift */,
 				456690092A8AA3CE0034C7C4 /* MainViewModel.swift */,
-				456690052A8AA3340034C7C4 /* Module.swift */,
-				456690072A8AA3930034C7C4 /* Coordinatable.swift */,
 				4566900B2A8AA43E0034C7C4 /* NetworkManager.swift */,
+				84E3F50C2A8D466300D91A7E /* NetworkModel.swift */,
 				4566900D2A8AA4640034C7C4 /* CoreDataManager.swift */,
 				456690132A8AA7010034C7C4 /* Extensions */,
 				45668FF02A8A9C320034C7C4 /* Main.storyboard */,
@@ -126,6 +129,7 @@
 			children = (
 				456690142A8AA7240034C7C4 /* ViewControllerExtensions.swift */,
 				456690162A8AA7670034C7C4 /* Color + Extensions.swift */,
+				84E3F5102A8D490000D91A7E /* CustomLabel.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -134,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				45668FEE2A8A9C320034C7C4 /* SearchViewController.swift */,
+				84E3F50E2A8D489900D91A7E /* SearchListCollectionViewCell.swift */,
 				456690182A8AA7AF0034C7C4 /* SearchCoordinator.swift */,
 			);
 			path = Search;
@@ -148,13 +153,24 @@
 			path = Favorites;
 			sourceTree = "<group>";
 		};
+		84E3F50B2A8BE27C00D91A7E /* AppFiles */ = {
+			isa = PBXGroup;
+			children = (
+				456690012A8A9EA70034C7C4 /* AppCoordinator.swift */,
+				456690032A8A9ED10034C7C4 /* AppFactory.swift */,
+				456690112A8AA6D40034C7C4 /* TabBarController.swift */,
+				456690052A8AA3340034C7C4 /* Module.swift */,
+				456690072A8AA3930034C7C4 /* Coordinatable.swift */,
+			);
+			path = AppFiles;
+			sourceTree = "<group>";
+		};
 		982BF2A0C0525B3905C6C5B8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				6A889D8038BD10F3388849F9 /* Pods-Star Wars Encyclopedia.debug.xcconfig */,
 				DD0630ACCC7A9937BDA3D7D0 /* Pods-Star Wars Encyclopedia.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -282,9 +298,12 @@
 				456690022A8A9EA80034C7C4 /* AppCoordinator.swift in Sources */,
 				456690152A8AA7240034C7C4 /* ViewControllerExtensions.swift in Sources */,
 				456690062A8AA3340034C7C4 /* Module.swift in Sources */,
+				84E3F50F2A8D489900D91A7E /* SearchListCollectionViewCell.swift in Sources */,
 				456690082A8AA3930034C7C4 /* Coordinatable.swift in Sources */,
+				84E3F5112A8D490000D91A7E /* CustomLabel.swift in Sources */,
 				45668FEB2A8A9C320034C7C4 /* AppDelegate.swift in Sources */,
 				45668FED2A8A9C320034C7C4 /* SceneDelegate.swift in Sources */,
+				84E3F50D2A8D466300D91A7E /* NetworkModel.swift in Sources */,
 				456690192A8AA7B00034C7C4 /* SearchCoordinator.swift in Sources */,
 				4566900A2A8AA3CE0034C7C4 /* MainViewModel.swift in Sources */,
 				456690102A8AA53C0034C7C4 /* FavoritesViewController.swift in Sources */,
