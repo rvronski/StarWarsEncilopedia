@@ -11,23 +11,29 @@ import SnapKit
 class SearchViewController: UIViewController, UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
-        guard searchController.searchBar.text != nil else {return}
-        if searchController.searchBar.text!.count > 2 {
-            self.viewModel.getHeroes(searchText: searchController.searchBar.text!) { [weak self] heroes in
-                DispatchQueue.main.async {
-                    self?.heroesArray.append(contentsOf: heroes)
-                    self?.collectionView.reloadData()
-                }
-            }
+        let searchText = searchController.searchBar.text
+        guard let searchText else { return }
+        if searchText.count > 1 {
+            getHeroes(searchText: searchText)
+        }
+        if searchText.count == 0 {
+            heroesArray.removeAll()
+            self.collectionView.reloadData()
+        }
+    }
+    
+    private var collectionViewHeight = [CGFloat]() {
+        didSet {
+            self.collectionView.collectionViewLayout.invalidateLayout()
         }
     }
     
     private lazy var backgroundView = UIImageView()
     private lazy var searchController = UISearchController(searchResultsController: nil)
     
-    private let viewModel: ViewModelProtocol
+    private let viewModel: SearchViewModelProtocol
     
-    init(viewModel: ViewModelProtocol) {
+    init(viewModel: SearchViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -35,7 +41,16 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
     required init?(coder: NSCoder) {
         fatalError()
     }
-    var heroesArray = [Hero]()
+    
+    var heroesArray = [HeroModel]() {
+        didSet {
+            let uniq = Set(heroesArray)
+            self.heroesArray = Array(uniq)
+            for i in 0..<heroesArray.count {
+                collectionViewHeight.insert(800, at: i)
+            }
+        }
+    }
     
     private lazy var layout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
@@ -55,7 +70,32 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
         return collectionView
     }()
     
-   
+    private func getHeroes(searchText: String) {
+        self.viewModel.getHeroes(searchText: searchController.searchBar.text!) { [weak self] heroes in
+            let group = DispatchGroup()
+            group.enter()
+            DispatchQueue.main.async {
+                self?.heroesArray.append(heroes)
+                group.leave()
+            }
+            group.notify(queue: .main) {
+                self?.collectionView.reloadData()
+                print(self?.heroesArray ?? " ")
+            }
+        }
+//        InfoNetworkManager.loadResidents {[weak self] name in
+//                    let group = DispatchGroup()
+//                    group.enter()
+//                    DispatchQueue.global().async {
+//                        self?.namesResidents.append(name ?? "")
+//                        group.leave()
+//                    }
+//                    group.notify(queue: .main) {
+//                        self?.tableView.reloadData()
+//                        print(self?.namesResidents ?? " ")
+//                    }
+//                }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,14 +127,21 @@ extension SearchViewController: UICollectionViewDelegateFlowLayout, UICollection
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchListCollectionViewCell.identifier, for: indexPath) as! SearchListCollectionViewCell
-        cell.setupHero(heroesArray[indexPath.item])
+        cell.setupHero(heroesArray[indexPath.item], section: indexPath.row)
+        cell.delegate = self
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-       
-        let width = collectionView.frame.width
+        let cell = self.collectionView.cellForItem(at: indexPath)
+        let height = self.collectionViewHeight.isEmpty ? 800 : self.collectionViewHeight[indexPath.row] 
         
-        return CGSize(width: width, height: 120)
+        let width = collectionView.frame.width
+        return CGSize(width: width, height: height)
+    }
+}
+extension SearchViewController: SearchListCollectionViewCellDelegate {
+    func getTableViewsHeights(height: CGFloat, section: Int) {
+        self.collectionViewHeight[section] = height
     }
 }

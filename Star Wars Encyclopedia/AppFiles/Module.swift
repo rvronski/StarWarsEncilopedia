@@ -7,9 +7,7 @@
 
 import UIKit
 
-protocol ViewModelProtocol: AnyObject {
-    func getHeroes(searchText: String, completion: @escaping ((_ heroes: [Hero]) -> Void))
-}
+protocol ViewModelProtocol: AnyObject {}
 
 struct Module {
     

@@ -24,7 +24,7 @@ class FavoritesCoordinator: ModuleCoordinatable {
         let module = factory.makeModule(ofType: .favorites)
         let viewController = module.view
         viewController.tabBarItem = moduleType.tabBarItem
-        (module.viewModel as? MainViewModel)?.coordinator = self
+        (module.viewModel as? FavoriteViewModel)?.coordinator = self
         self.module = module
         return viewController
     }

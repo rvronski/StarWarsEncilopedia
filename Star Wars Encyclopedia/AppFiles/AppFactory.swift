@@ -21,11 +21,11 @@ class AppFactory {
     func makeModule(ofType moduleType: Module.ModuleType) -> Module {
         switch moduleType {
         case .search:
-            let viewModel = MainViewModel(coreDataManager: coreDataManager, networkManager: networkManager )
+            let viewModel = SearchViewModel(coreDataManager: coreDataManager, networkManager: networkManager )
             let view = UINavigationController(rootViewController: SearchViewController(viewModel: viewModel))
             return Module(moduleType: moduleType, viewModel: viewModel, view: view)
         case .favorites:
-            let viewModel = MainViewModel(coreDataManager: coreDataManager, networkManager: networkManager)
+            let viewModel = FavoriteViewModel(coreDataManager: coreDataManager)
             let view = FavoritesViewController(viewModel: viewModel)
             return Module(moduleType: moduleType, viewModel: viewModel, view: view)
        

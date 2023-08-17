@@ -18,7 +18,7 @@
 		456690042A8A9ED10034C7C4 /* AppFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456690032A8A9ED10034C7C4 /* AppFactory.swift */; };
 		456690062A8AA3340034C7C4 /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456690052A8AA3340034C7C4 /* Module.swift */; };
 		456690082A8AA3930034C7C4 /* Coordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456690072A8AA3930034C7C4 /* Coordinatable.swift */; };
-		4566900A2A8AA3CE0034C7C4 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456690092A8AA3CE0034C7C4 /* MainViewModel.swift */; };
+		4566900A2A8AA3CE0034C7C4 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456690092A8AA3CE0034C7C4 /* SearchViewModel.swift */; };
 		4566900C2A8AA43E0034C7C4 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4566900B2A8AA43E0034C7C4 /* NetworkManager.swift */; };
 		4566900E2A8AA4640034C7C4 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4566900D2A8AA4640034C7C4 /* CoreDataManager.swift */; };
 		456690102A8AA53C0034C7C4 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4566900F2A8AA53C0034C7C4 /* FavoritesViewController.swift */; };
@@ -28,6 +28,8 @@
 		456690192A8AA7B00034C7C4 /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456690182A8AA7AF0034C7C4 /* SearchCoordinator.swift */; };
 		4566901D2A8AA8360034C7C4 /* FavoritesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4566901C2A8AA8360034C7C4 /* FavoritesCoordinator.swift */; };
 		6EA3C99254A83F5DA0574722 /* Pods_Star_Wars_Encyclopedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA197E3192021E50C976D535 /* Pods_Star_Wars_Encyclopedia.framework */; };
+		8437C39F2A8DD3F600F8DDCD /* FavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8437C39E2A8DD3F600F8DDCD /* FavoriteViewModel.swift */; };
+		8437C3A12A8DDF7800F8DDCD /* StarshipsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8437C3A02A8DDF7800F8DDCD /* StarshipsTableViewCell.swift */; };
 		84E3F50D2A8D466300D91A7E /* NetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E3F50C2A8D466300D91A7E /* NetworkModel.swift */; };
 		84E3F50F2A8D489900D91A7E /* SearchListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E3F50E2A8D489900D91A7E /* SearchListCollectionViewCell.swift */; };
 		84E3F5112A8D490000D91A7E /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E3F5102A8D490000D91A7E /* CustomLabel.swift */; };
@@ -47,7 +49,7 @@
 		456690032A8A9ED10034C7C4 /* AppFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFactory.swift; sourceTree = "<group>"; };
 		456690052A8AA3340034C7C4 /* Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
 		456690072A8AA3930034C7C4 /* Coordinatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinatable.swift; sourceTree = "<group>"; };
-		456690092A8AA3CE0034C7C4 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		456690092A8AA3CE0034C7C4 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		4566900B2A8AA43E0034C7C4 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		4566900D2A8AA4640034C7C4 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		4566900F2A8AA53C0034C7C4 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
@@ -57,6 +59,8 @@
 		456690182A8AA7AF0034C7C4 /* SearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
 		4566901C2A8AA8360034C7C4 /* FavoritesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCoordinator.swift; sourceTree = "<group>"; };
 		6A889D8038BD10F3388849F9 /* Pods-Star Wars Encyclopedia.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Star Wars Encyclopedia.debug.xcconfig"; path = "Target Support Files/Pods-Star Wars Encyclopedia/Pods-Star Wars Encyclopedia.debug.xcconfig"; sourceTree = "<group>"; };
+		8437C39E2A8DD3F600F8DDCD /* FavoriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewModel.swift; sourceTree = "<group>"; };
+		8437C3A02A8DDF7800F8DDCD /* StarshipsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarshipsTableViewCell.swift; sourceTree = "<group>"; };
 		84E3F50C2A8D466300D91A7E /* NetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkModel.swift; sourceTree = "<group>"; };
 		84E3F50E2A8D489900D91A7E /* SearchListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListCollectionViewCell.swift; sourceTree = "<group>"; };
 		84E3F5102A8D490000D91A7E /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
@@ -110,10 +114,8 @@
 				84E3F50B2A8BE27C00D91A7E /* AppFiles */,
 				4566901A2A8AA7F90034C7C4 /* Search */,
 				4566901B2A8AA8150034C7C4 /* Favorites */,
-				456690092A8AA3CE0034C7C4 /* MainViewModel.swift */,
-				4566900B2A8AA43E0034C7C4 /* NetworkManager.swift */,
-				84E3F50C2A8D466300D91A7E /* NetworkModel.swift */,
-				4566900D2A8AA4640034C7C4 /* CoreDataManager.swift */,
+				8437C3A22A8DF52300F8DDCD /* Network */,
+				8437C3A32A8DF5E100F8DDCD /* CoreData */,
 				456690132A8AA7010034C7C4 /* Extensions */,
 				45668FF02A8A9C320034C7C4 /* Main.storyboard */,
 				45668FF62A8A9C3D0034C7C4 /* Assets.xcassets */,
@@ -139,7 +141,9 @@
 			children = (
 				45668FEE2A8A9C320034C7C4 /* SearchViewController.swift */,
 				84E3F50E2A8D489900D91A7E /* SearchListCollectionViewCell.swift */,
+				8437C3A02A8DDF7800F8DDCD /* StarshipsTableViewCell.swift */,
 				456690182A8AA7AF0034C7C4 /* SearchCoordinator.swift */,
+				456690092A8AA3CE0034C7C4 /* SearchViewModel.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -148,9 +152,27 @@
 			isa = PBXGroup;
 			children = (
 				4566900F2A8AA53C0034C7C4 /* FavoritesViewController.swift */,
+				8437C39E2A8DD3F600F8DDCD /* FavoriteViewModel.swift */,
 				4566901C2A8AA8360034C7C4 /* FavoritesCoordinator.swift */,
 			);
 			path = Favorites;
+			sourceTree = "<group>";
+		};
+		8437C3A22A8DF52300F8DDCD /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				4566900B2A8AA43E0034C7C4 /* NetworkManager.swift */,
+				84E3F50C2A8D466300D91A7E /* NetworkModel.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		8437C3A32A8DF5E100F8DDCD /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				4566900D2A8AA4640034C7C4 /* CoreDataManager.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		84E3F50B2A8BE27C00D91A7E /* AppFiles */ = {
@@ -294,7 +316,9 @@
 				456690122A8AA6D40034C7C4 /* TabBarController.swift in Sources */,
 				45668FF52A8A9C320034C7C4 /* Star_Wars_Encyclopedia.xcdatamodeld in Sources */,
 				4566900C2A8AA43E0034C7C4 /* NetworkManager.swift in Sources */,
+				8437C3A12A8DDF7800F8DDCD /* StarshipsTableViewCell.swift in Sources */,
 				45668FEF2A8A9C320034C7C4 /* SearchViewController.swift in Sources */,
+				8437C39F2A8DD3F600F8DDCD /* FavoriteViewModel.swift in Sources */,
 				456690022A8A9EA80034C7C4 /* AppCoordinator.swift in Sources */,
 				456690152A8AA7240034C7C4 /* ViewControllerExtensions.swift in Sources */,
 				456690062A8AA3340034C7C4 /* Module.swift in Sources */,
@@ -305,7 +329,7 @@
 				45668FED2A8A9C320034C7C4 /* SceneDelegate.swift in Sources */,
 				84E3F50D2A8D466300D91A7E /* NetworkModel.swift in Sources */,
 				456690192A8AA7B00034C7C4 /* SearchCoordinator.swift in Sources */,
-				4566900A2A8AA3CE0034C7C4 /* MainViewModel.swift in Sources */,
+				4566900A2A8AA3CE0034C7C4 /* SearchViewModel.swift in Sources */,
 				456690102A8AA53C0034C7C4 /* FavoritesViewController.swift in Sources */,
 				4566901D2A8AA8360034C7C4 /* FavoritesCoordinator.swift in Sources */,
 				4566900E2A8AA4640034C7C4 /* CoreDataManager.swift in Sources */,

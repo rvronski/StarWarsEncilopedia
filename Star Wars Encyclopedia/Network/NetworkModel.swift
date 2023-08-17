@@ -14,15 +14,21 @@ struct HeroAnswer: Codable {
 }
 
 
-struct Hero: Codable {
+struct Hero: Codable, Hashable {
     var name: String?
     var gender: String?
     var starships: [String]?
 }
 
-struct Starships: Codable {
+struct Starships: Codable, Hashable {
     var manufacturer: String?
     var model: String?
     var name: String?
     var passengers: String?
+}
+
+struct HeroModel: Hashable, Equatable {
+    var name: String?
+    var gender: String?
+    var starships: [Starships]?
 }

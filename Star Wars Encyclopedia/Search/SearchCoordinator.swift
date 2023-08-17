@@ -23,7 +23,7 @@ class SearchCoordinator: ModuleCoordinatable {
         let module = factory.makeModule(ofType: .search)
         let viewController = module.view
         viewController.tabBarItem = moduleType.tabBarItem
-        (module.viewModel as? MainViewModel)?.coordinator = self
+        (module.viewModel as? SearchViewModel)?.coordinator = self
         self.module = module
         return viewController
     }

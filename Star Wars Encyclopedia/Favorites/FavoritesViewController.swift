@@ -9,9 +9,9 @@ import UIKit
 
 class FavoritesViewController: UIViewController {
 
-    private let viewModel: ViewModelProtocol
+    private let viewModel: FavoriteViewModelProtocol
     
-    init(viewModel: ViewModelProtocol) {
+    init(viewModel: FavoriteViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }

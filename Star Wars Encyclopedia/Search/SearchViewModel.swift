@@ -7,8 +7,12 @@
 
 import Foundation
 
-class MainViewModel: ViewModelProtocol {
-    
+protocol SearchViewModelProtocol: ViewModelProtocol {
+    func getHeroes(searchText: String, completion: @escaping ((_ heroes: HeroModel) -> Void))
+}
+
+class SearchViewModel: SearchViewModelProtocol {
+
     private let coreDataManager: CoreDataManagerProtocol
     private let networkManager: NetworkProtocol
     
@@ -18,7 +22,7 @@ class MainViewModel: ViewModelProtocol {
     }
     weak var coordinator: Coordinatable!
     
-    func getHeroes(searchText: String, completion: @escaping ((_ heroes: [Hero]) -> Void)) {
+    func getHeroes(searchText: String, completion: @escaping ((_ heroes: HeroModel) -> Void)) {
         networkManager.getHeroes(searchText: searchText) { heroes in
             guard let heroes else {return}
             completion(heroes)
