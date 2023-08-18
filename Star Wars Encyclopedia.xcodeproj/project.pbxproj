@@ -121,7 +121,6 @@
 				45668FF62A8A9C3D0034C7C4 /* Assets.xcassets */,
 				45668FF82A8A9C3D0034C7C4 /* LaunchScreen.storyboard */,
 				45668FFB2A8A9C3D0034C7C4 /* Info.plist */,
-				45668FF32A8A9C320034C7C4 /* Star_Wars_Encyclopedia.xcdatamodeld */,
 			);
 			path = "Star Wars Encyclopedia";
 			sourceTree = "<group>";
@@ -171,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				4566900D2A8AA4640034C7C4 /* CoreDataManager.swift */,
+				45668FF32A8A9C320034C7C4 /* Star_Wars_Encyclopedia.xcdatamodeld */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
