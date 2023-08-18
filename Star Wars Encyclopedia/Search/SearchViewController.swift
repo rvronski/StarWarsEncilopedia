@@ -15,8 +15,9 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
         guard let searchText else { return }
         if searchText.count > 1 {
             getHeroes(searchText: searchText)
+            isLoding(true)
         }
-        if searchText.count == 0 {
+        if searchText.count == 0 || searchText == "" {
             heroesArray.removeAll()
             self.collectionView.reloadData()
         }
@@ -29,7 +30,10 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
     }
     
     private lazy var backgroundView = UIImageView()
+    
     private lazy var searchController = UISearchController(searchResultsController: nil)
+    
+    private lazy var activityIndicator = UIActivityIndicatorView(style: .large)
     
     private let viewModel: SearchViewModelProtocol
     
@@ -44,12 +48,24 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
     
     var heroesArray = [HeroModel]() {
         didSet {
-            let uniq = Set(heroesArray)
-            self.heroesArray = Array(uniq)
             for i in 0..<heroesArray.count {
                 collectionViewHeight.insert(800, at: i)
             }
+            self.collectionView.reloadData()
         }
+     
+    }
+    
+    func isLoding(_ result: Bool) {
+        DispatchQueue.main.async {
+            self.activityIndicator.isHidden = !result
+            if result {
+                self.activityIndicator.startAnimating()
+            } else {
+                self.activityIndicator.stopAnimating()
+            }
+        }
+        
     }
     
     private lazy var layout: UICollectionViewFlowLayout = {
@@ -72,29 +88,23 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
     
     private func getHeroes(searchText: String) {
         self.viewModel.getHeroes(searchText: searchController.searchBar.text!) { [weak self] heroes in
-            let group = DispatchGroup()
-            group.enter()
-            DispatchQueue.main.async {
-                self?.heroesArray.append(heroes)
-                group.leave()
-            }
-            group.notify(queue: .main) {
-                self?.collectionView.reloadData()
-                print(self?.heroesArray ?? " ")
+            let name = heroes.name
+            if self!.heroesArray.contains(where: {$0.name == name }) {
+                self?.isLoding(false)
+                return
+            } else {
+                let group = DispatchGroup()
+                group.enter()
+                DispatchQueue.main.async {
+                    self?.heroesArray.append(heroes)
+                    group.leave()
+                }
+                group.notify(queue: .main) {
+                    self?.isLoding(false)
+                    self?.collectionView.reloadData()
+                }
             }
         }
-//        InfoNetworkManager.loadResidents {[weak self] name in
-//                    let group = DispatchGroup()
-//                    group.enter()
-//                    DispatchQueue.global().async {
-//                        self?.namesResidents.append(name ?? "")
-//                        group.leave()
-//                    }
-//                    group.notify(queue: .main) {
-//                        self?.tableView.reloadData()
-//                        print(self?.namesResidents ?? " ")
-//                    }
-//                }
     }
     
     override func viewDidLoad() {
@@ -103,12 +113,15 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
         searchController.searchResultsUpdater = self
         self.navigationItem.searchController = searchController
     }
-  
+    
     private func setupView() {
         backgroundView.image = UIImage(named: "stars")
         searchController.searchBar.searchTextField.backgroundColor = .white
+        activityIndicator.color = .systemIndigo
         self.view.addSubview(backgroundView)
         self.view.addSubview(collectionView)
+        self.view.addSubview(activityIndicator)
+        
         backgroundView.snp.makeConstraints({
             $0.edges.equalToSuperview()
         })
@@ -116,6 +129,10 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
         collectionView.snp.makeConstraints({
             $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
             $0.left.right.bottom.equalToSuperview()
+        })
+        
+        activityIndicator.snp.makeConstraints({
+            $0.centerY.centerX.equalToSuperview()
         })
     }
     
@@ -127,14 +144,14 @@ extension SearchViewController: UICollectionViewDelegateFlowLayout, UICollection
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchListCollectionViewCell.identifier, for: indexPath) as! SearchListCollectionViewCell
-        cell.setupHero(heroesArray[indexPath.item], section: indexPath.row)
+        cell.setupHero(heroesArray[indexPath.row], section: indexPath.row)
         cell.delegate = self
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cell = self.collectionView.cellForItem(at: indexPath)
-        let height = self.collectionViewHeight.isEmpty ? 800 : self.collectionViewHeight[indexPath.row] 
+        
+        let height = self.collectionViewHeight.isEmpty ? 800 : self.collectionViewHeight[indexPath.row]
         
         let width = collectionView.frame.width
         return CGSize(width: width, height: height)
@@ -143,5 +160,10 @@ extension SearchViewController: UICollectionViewDelegateFlowLayout, UICollection
 extension SearchViewController: SearchListCollectionViewCellDelegate {
     func getTableViewsHeights(height: CGFloat, section: Int) {
         self.collectionViewHeight[section] = height
+    }
+    
+    func didTapFavButton(index: Int) {
+        let hero = self.heroesArray[index]
+        viewModel.getFavorite(hero: hero)
     }
 }

@@ -27,7 +27,7 @@ struct Starships: Codable, Hashable {
     var passengers: String?
 }
 
-struct HeroModel: Hashable, Equatable {
+struct HeroModel: Hashable {
     var name: String?
     var gender: String?
     var starships: [Starships]?

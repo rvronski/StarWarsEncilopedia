@@ -44,6 +44,13 @@ class StarshipsTableViewCell: UITableViewCell {
         passengersLabelText.text = starship.passengers ?? ""
     }
     
+    func setup(starTransport: StarTransport) {
+        nameLabelText.text = starTransport.name ?? ""
+        modelLabelText.text = starTransport.model ?? ""
+        manufacturerLabelText.text = starTransport.manufacture ?? ""
+        passengersLabelText.text = starTransport.passengers ?? ""
+    }
+    
     private func setupView() {
         
         self.contentView.backgroundColor = .systemIndigo.withAlphaComponent(0.1)

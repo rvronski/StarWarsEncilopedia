@@ -15,16 +15,16 @@ struct Module {
         case search
         case favorites
     }
-    
     let moduleType: ModuleType
     let viewModel: ViewModelProtocol
     let view: UIViewController
 }
+
 extension Module.ModuleType {
     var tabBarItem: UITabBarItem {
         switch self {
         case .search:
-            return UITabBarItem(title: "Search",image: UIImage(systemName: "magnifyingglass.circle"), selectedImage: UIImage(systemName: "magnifyingglass.circle.fill"))
+            return UITabBarItem(title: "Search",image: UIImage(systemName: "magnifyingglass"), selectedImage: UIImage(systemName: "magnifyingglass.circle.fill"))
         case .favorites:
             return  UITabBarItem(title: "Favorites", image: UIImage(systemName: "star"), selectedImage: UIImage(systemName: "star.fill"))
       

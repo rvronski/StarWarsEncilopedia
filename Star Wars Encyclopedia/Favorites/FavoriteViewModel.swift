@@ -8,7 +8,8 @@
 import Foundation
 
 protocol FavoriteViewModelProtocol: ViewModelProtocol {
-    
+    func getPerson() -> [Person]
+    func deletePerson(person: Person)
 }
 
 class FavoriteViewModel: FavoriteViewModelProtocol {
@@ -22,6 +23,11 @@ class FavoriteViewModel: FavoriteViewModelProtocol {
     }
     weak var coordinator: Coordinatable!
     
-   
+    func getPerson() -> [Person] {
+        return coreDataManager.getPerson()
+    }
     
+    func deletePerson(person: Person) {
+        coreDataManager.deletePerson(person: person)
+    }
 }

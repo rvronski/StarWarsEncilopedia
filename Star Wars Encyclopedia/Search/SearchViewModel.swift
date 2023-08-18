@@ -9,6 +9,7 @@ import Foundation
 
 protocol SearchViewModelProtocol: ViewModelProtocol {
     func getHeroes(searchText: String, completion: @escaping ((_ heroes: HeroModel) -> Void))
+    func getFavorite(hero: HeroModel)
 }
 
 class SearchViewModel: SearchViewModelProtocol {
@@ -28,5 +29,9 @@ class SearchViewModel: SearchViewModelProtocol {
             completion(heroes)
         }
     }
-    
+    func getFavorite(hero: HeroModel) {
+        coreDataManager.createUser(hero: hero) { person in
+            print(person)
+        }
+    }
 }

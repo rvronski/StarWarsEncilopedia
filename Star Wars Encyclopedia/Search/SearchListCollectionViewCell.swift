@@ -8,8 +8,10 @@
 import UIKit
 import SnapKit
 
-protocol SearchListCollectionViewCellDelegate {
-    func getTableViewsHeights(height: CGFloat, section: Int)
+@objc protocol SearchListCollectionViewCellDelegate {
+    @objc optional func getTableViewsHeights(height: CGFloat, section: Int)
+    @objc optional func didTapFavButton(index: Int)
+    @objc optional func deleteFav(index: Int)
 }
 
 class SearchListCollectionViewCell: UICollectionViewCell {
@@ -25,7 +27,21 @@ class SearchListCollectionViewCell: UICollectionViewCell {
     
     lazy var genderLabelText = InfoLabels(inform: "", size: 13, weight: .bold, color: .white)
     
+    lazy var favoriteButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        button.addTarget(self, action: #selector(didTapFavButton), for: .touchUpInside)
+        button.tintColor = .systemYellow
+        return button
+    }()
+    
     var starShipsArray = [Starships]() {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
+    
+    var starTransportArray = [StarTransport]() {
         didSet {
             self.tableView.reloadData()
         }
@@ -45,6 +61,8 @@ class SearchListCollectionViewCell: UICollectionViewCell {
         return tableView
     }()
     
+    var isFavorite = false
+    
     var height = CGFloat(0)
     var section = 0
     
@@ -58,10 +76,22 @@ class SearchListCollectionViewCell: UICollectionViewCell {
     }
     
     func setupHero(_ hero: HeroModel, section: Int) {
+        
+        isFavorite = false
         self.section = section
         nameLabelText.text = hero.name ?? ""
         genderLabelText.text = hero.gender ?? ""
         self.starShipsArray = hero.starships ?? []
+    }
+    
+    func setupPerson(_ hero: Person, section: Int) {
+        favoriteButton.setImage(UIImage(systemName: "trash"), for: .normal)
+        favoriteButton.tintColor = .systemRed
+        isFavorite = true
+        self.section = section
+        nameLabelText.text = hero.name ?? ""
+        genderLabelText.text = hero.gender ?? ""
+        self.starTransportArray = hero.starship?.allObjects as! [StarTransport]
     }
     
     private func setupView() {
@@ -72,6 +102,7 @@ class SearchListCollectionViewCell: UICollectionViewCell {
         self.addSubview(starshipsLabel)
         self.addSubview(nameLabelText)
         self.addSubview(genderLabelText)
+        self.addSubview(favoriteButton)
         self.addSubview(tableView)
         
         nameLabel.snp.makeConstraints({
@@ -89,6 +120,10 @@ class SearchListCollectionViewCell: UICollectionViewCell {
             $0.top.equalTo(self.nameLabelText.snp.bottom).offset(20)
             $0.right.equalToSuperview().inset(20)
         })
+        favoriteButton.snp.makeConstraints({
+            $0.centerX.equalToSuperview()
+            $0.top.equalToSuperview().offset(60)
+        })
         starshipsLabel.snp.makeConstraints({
             $0.top.equalTo(self.genderLabel.snp.bottom).offset(20)
             $0.centerX.equalToSuperview()
@@ -98,11 +133,19 @@ class SearchListCollectionViewCell: UICollectionViewCell {
             $0.left.right.bottom.equalToSuperview().inset(20)
         })
     }
+    
+    @objc private func didTapFavButton() {
+        if isFavorite {
+            delegate?.deleteFav?(index: self.section)
+        } else {
+            delegate?.didTapFavButton?(index: self.section)
+        }
+    }
 }
 extension SearchListCollectionViewCell: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return starShipsArray.count
+        return isFavorite ? starTransportArray.count : starShipsArray.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -112,20 +155,23 @@ extension SearchListCollectionViewCell: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let height = cell.contentView.frame.height
         self.height += height
-        if indexPath.section == (starShipsArray.count - 1) {
+        if indexPath.section == (starShipsArray.count - 1) || indexPath.section == (starTransportArray.count - 1) {
             let h = self.height + nameLabel.intrinsicContentSize.height + genderLabel.intrinsicContentSize.height + starshipsLabel.intrinsicContentSize.height + 100
-            self.delegate?.getTableViewsHeights(height: h, section: section)
+            self.delegate?.getTableViewsHeights?(height: h, section: section)
             self.height = 0
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: StarshipsTableViewCell.identifier, for: indexPath) as! StarshipsTableViewCell
-        
-        cell.setup(starship: starShipsArray[indexPath.section])
-        
+        if isFavorite {
+            cell.setup(starTransport: starTransportArray[indexPath.section])
+        } else {
+            cell.setup(starship: starShipsArray[indexPath.section])
+        }
         return cell
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
     }
