@@ -27,7 +27,4 @@ class SearchCoordinator: ModuleCoordinatable {
         self.module = module
         return viewController
     }
-    
-   
-    
 }
